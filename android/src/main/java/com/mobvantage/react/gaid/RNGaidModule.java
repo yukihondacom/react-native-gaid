@@ -36,17 +36,17 @@ public class RNGaidModule extends ReactContextBaseJavaModule {
   class GetGAIDThread implements Runnable {
     ReactApplicationContext context;
     Promise result;
-    
+
     public GetGAIDThread(ReactApplicationContext context, Promise result) {
       this.context = context;
       this.result = result;
     }
-    
+
     @Override
     public void run() {
       try {
         Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(context);
-        
+
         WritableMap map = Arguments.createMap();
         map.putString("advertisingId", adInfo.getId());
         map.putBoolean("isLimitAdTrackingEnabled", adInfo.isLimitAdTrackingEnabled());
